@@ -92,6 +92,7 @@ pub mod rt {
 
         #[cfg(not(feature = "sql-browser"))]
         async fn connect_tcp(&self) -> std::io::Result<tokio::net::TcpStream> {
+            tracing::info!("Connecting to {}", self.config.get_addr());
             tokio::net::TcpStream::connect(self.config.get_addr()).await
         }
 
